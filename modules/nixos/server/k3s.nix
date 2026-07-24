@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # K3s service configuration
@@ -11,11 +11,15 @@
   networking.firewall.allowedUDPPorts = [
     # 8472 # k3s, flannel: required if using multi-node for inter-node networking
   ];
-  services.k3s.enable = true;
-  services.k3s.role = "server";
-  services.k3s.extraFlags = toString [
-    # "--debug" # Optionally add additional args to k3s
-  ];
+
+  services.k3s = {
+    enable = true;
+    package = pkgs.k3s_1_36;
+    role = "server";
+    extraFlags = toString [
+      "--tls-san=${config.networking.hostName}"
+    ];
+  };
 
   # Environment variables for Kubernetes
   environment.variables = {
