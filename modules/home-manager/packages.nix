@@ -13,6 +13,7 @@
     antigravity-cli
     nixd
     nil
+    nmap
 
     # Dev & Ops Tools
     clang-tools
