@@ -69,7 +69,7 @@
                 subvolumes = {
                   "@data" = {
                     mountpoint = "/mnt/data";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [ "noatime" ];
                   };
                 };
               };
