@@ -68,7 +68,7 @@
                 type = "btrfs";
                 subvolumes = {
                   "@data" = {
-                    mountpoint = "/mnt/data";
+                    mountpoint = "/var/lib/rancher/k3s/storage";
                     mountOptions = [ "noatime" ];
                   };
                 };
