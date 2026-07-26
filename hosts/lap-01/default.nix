@@ -6,8 +6,6 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen5
   ];
 
-  networking.hostName = "lap-01";
-
   boot = {
     loader = {
       systemd-boot.enable = true;

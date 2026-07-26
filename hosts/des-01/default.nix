@@ -5,8 +5,6 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "des-01";
-
   boot = {
     loader = {
       systemd-boot.enable = true;

@@ -6,8 +6,6 @@
     ./disko.nix
   ];
 
-  networking.hostName = "kube-01";
-
   # Standard UEFI bootloader for Proxmox / VM / Bare-metal
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
