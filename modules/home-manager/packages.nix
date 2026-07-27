@@ -22,6 +22,7 @@
     kubectx
     fluxcd
     gh
+    popeye
 
     # Desktop Applications & GUI
     alacritty
