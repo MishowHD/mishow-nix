@@ -14,6 +14,7 @@
     nixd
     nil
     nmap
+    dnsutils
 
     # Dev & Ops Tools
     clang-tools
