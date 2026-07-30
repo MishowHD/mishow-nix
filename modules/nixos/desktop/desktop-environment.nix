@@ -13,8 +13,8 @@
     ];
   };
 
+  security.pam.services.login.fprintAuth = false;
   security.pam.services.greetd = {
-    fprintAuth = false;
     enableGnomeKeyring = true;
   };
 
