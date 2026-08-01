@@ -24,6 +24,7 @@
     fluxcd
     gh
     popeye
+    sops
 
     # Desktop Applications & GUI
     alacritty
