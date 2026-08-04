@@ -48,6 +48,7 @@ setopt no_case_match         # case-insensitive pattern matching
 setopt globdots              # include dotfiles in glob results
 setopt extended_glob         # enable ^, ~, # glob operators
 setopt interactive_comments  # allow # comments in interactive shell
+unsetopt nomatch             # pass unmatched globs (e.g. nixpkgs#foo) through without error
 
 stty stop undef              # prevent Ctrl+S from freezing the terminal
 
@@ -114,7 +115,6 @@ alias gd='git diff'
 
 alias k='kubectl'
 alias kx='kubectx'
-alias nix='noglob nix'
 
 # =============================================================================
 #  Prompt & Welcome
