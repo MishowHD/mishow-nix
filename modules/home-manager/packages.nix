@@ -36,6 +36,7 @@
     xwayland-satellite
     papers
     telegram-desktop
+    prismlauncher
 
     #Development
     rustc
