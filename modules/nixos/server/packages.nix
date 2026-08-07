@@ -21,7 +21,7 @@
     rsync
     screen
     tcpdump
-    tmux
+    zellij
     tree
     vim
     neovim
