@@ -572,9 +572,9 @@
   "hyprlandOutputSettings": {},
   "displayProfiles": {},
   "activeDisplayProfile": {
-    "niri": "auto_eed335ba"
+    "niri": ""
   },
-  "displayProfileAutoSelect": true,
+  "displayProfileAutoSelect": false,
   "displayShowDisconnected": false,
   "displaySnapToEdge": true,
   "connectedFrameBarStyleBackups": {},
