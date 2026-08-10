@@ -41,6 +41,7 @@
   hardware.alsa.enablePersistence = true;
 
   services.fprintd.enable = true;
+  # services.pcscd.enable = true;
 
   system.stateVersion = "26.05";
 }
