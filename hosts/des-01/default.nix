@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ../../modules/nixos/common
+    ../../modules/nixos/desktop
     ./hardware-configuration.nix
   ];
 

@@ -1,5 +1,5 @@
 {
-  description = "NixOS and Home Manager configuration flake";
+  description = "MishowHD configurations for NixOS";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -27,22 +27,23 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-
-      customLib = import ./lib { inherit inputs; };
-    in
+    inputs@{ nixpkgs, nixpkgs-stable, ... }:
     {
-      lib = customLib;
-
-      formatter.${system} = pkgs.nixfmt;
-
       nixosConfigurations = {
-        des-01 = customLib.mkDesktop "des-01";
-        lap-01 = customLib.mkDesktop "lap-01";
-        srv-01 = customLib.mkServer "srv-01";
+        des-01 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; hostName = "des-01"; };
+          modules = [ ./hosts/des-01 ];
+        };
+
+        lap-01 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; hostName = "lap-01"; };
+          modules = [ ./hosts/lap-01 ];
+        };
+
+        srv-01 = nixpkgs-stable.lib.nixosSystem {
+          specialArgs = { inherit inputs; hostName = "srv-01"; };
+          modules = [ ./hosts/srv-01 ];
+        };
       };
     };
 }

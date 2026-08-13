@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ../../modules/nixos/common
+    ../../modules/nixos/server
     ./hardware-configuration.nix
     ./disko.nix
   ];
