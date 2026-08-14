@@ -37,6 +37,7 @@
     papers
     telegram-desktop
     prismlauncher
+    vlc
 
     #Development
     rustc
