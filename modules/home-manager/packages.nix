@@ -15,6 +15,7 @@
     nil
     nmap
     dnsutils
+    ripgrep
 
     # Dev & Ops Tools
     clang-tools
