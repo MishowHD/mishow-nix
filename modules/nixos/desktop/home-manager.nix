@@ -6,20 +6,18 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs hostName; };
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
+    extraSpecialArgs = { inherit inputs hostName; };
+
     users.mishow = {
       imports = [
         ../../home-manager
-      ] ++ (
-        let
-          hostHome = ../../../hosts/${hostName}/home.nix;
-        in
-        if builtins.pathExists hostHome then [ hostHome ] else [ ]
-      );
+        ../../../hosts/${hostName}/home.nix
+      ];
     };
   };
 }
+
 
