@@ -1,14 +1,17 @@
-{ lib, ... }:
+{ ... }:
 
 {
-  # Automatically import all .nix files in this directory (except default.nix)
-  imports =
-    let
-      files = builtins.readDir ./.;
-      nixFiles = lib.filterAttrs (
-        name: type:
-        type == "regular" && lib.hasSuffix ".nix" name && name != "default.nix"
-      ) files;
-    in
-    builtins.map (name: ./. + "/${name}") (builtins.attrNames nixFiles);
+  imports = [
+    ./audio.nix
+    ./desktop-environment.nix
+    ./fonts.nix
+    ./hardware-services.nix
+    ./home-manager.nix
+    ./networking.nix
+    ./nh.nix
+    ./plymouth.nix
+    ./secure-boot.nix
+    ./system-services.nix
+    ./user.nix
+  ];
 }
