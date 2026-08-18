@@ -36,18 +36,16 @@
           "niri": {}
         },
         "HDMI-A-1": {
-          "mode": "1920x1080@60.000",
+          "mode": "4096x2160@60.000",
           "position": {
             "x": 1536,
             "y": 0
           },
           "scale": 1,
           "transform": "Normal",
-          "vrr": true,
+          "vrr": false,
           "disabled": false,
-          "niri": {
-            "vrrOnDemand": null
-          }
+          "niri": {}
         }
       }
     }
