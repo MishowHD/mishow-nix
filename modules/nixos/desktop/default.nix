@@ -13,5 +13,6 @@
     ./secure-boot.nix
     ./system-services.nix
     ./user.nix
+    ./virtualization.nix
   ];
 }
