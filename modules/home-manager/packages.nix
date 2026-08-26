@@ -39,6 +39,7 @@
     telegram-desktop
     prismlauncher
     vlc
+    nextcloud-client
 
     #Development
     rustc
