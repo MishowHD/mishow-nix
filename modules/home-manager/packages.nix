@@ -40,6 +40,7 @@
     prismlauncher
     vlc
     nextcloud-client
+    heroic
 
     #Development
     rustc
