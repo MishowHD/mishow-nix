@@ -6,6 +6,8 @@
     wifi.backend = "iwd";
   };
 
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
+
   networking.wireless.iwd.settings = {
     Settings = {
       AddressRandomization = "network";
