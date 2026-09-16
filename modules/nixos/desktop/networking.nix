@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   networking.networkmanager = {
@@ -21,8 +21,5 @@
   # Restarting iwd manually after boot always fixes it because by then
   # the interface is already present.
   # See: https://wiki.archlinux.org/title/Iwd#Restarting_iwd.service_after_boot
-  systemd.services.iwd = {
-    after = [ "sys-subsystem-net-devices-wlan0.device" ];
-    bindsTo = [ "sys-subsystem-net-devices-wlan0.device" ];
-  };
+  systemd.services.iwd.wantedBy = lib.mkForce [ ];
 }
