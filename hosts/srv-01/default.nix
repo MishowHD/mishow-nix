@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -8,14 +8,21 @@
     ./disko.nix
   ];
 
-  # Standard UEFI bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Filesystems configuration
+  boot.kernelPackages = pkgs.linuxPackages;
+
   boot.supportedFilesystems = [ "btrfs" "zfs" ];
   boot.zfs.forceImportRoot = false;
   networking.hostId = "8425e349";
+
+  services.zfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+  };
+
+  services.smartd.enable = true;
 
   system.stateVersion = "26.05";
 }

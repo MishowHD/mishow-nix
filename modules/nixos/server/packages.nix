@@ -16,6 +16,11 @@
   environment.systemPackages = with pkgs; [
     fish
     htop
+    btop
+    iotop-c
+    smartmontools
+    lm_sensors
+    sysstat
     jq
     findutils
     rsync

@@ -83,17 +83,17 @@
         type = "zpool";
         mode = "mirror";
         options = {
-          ashift = "12"; # Allineamento settori a 4K (fondamentale per dischi moderni)
-          autotrim = "on"; # Abilita il TRIM per liberare blocchi cancellati
+          ashift = "12";
+          autotrim = "off";
         };
         rootFsOptions = {
-          compression = "zstd"; # Compressione trasparente senza cali di prestazioni
+          compression = "zstd";
         };
         datasets = {
-          "k3s" = {
+          "storage" = {
             type = "zfs_fs";
-            mountpoint = "/var/lib/rancher/k3s";
-            options.mountpoint = "legacy"; # Indica a ZFS di far gestire il mount a systemd/fstab di NixOS
+            mountpoint = "/var/lib/rancher/k3s/storage";
+            options.mountpoint = "legacy";
           };
         };
       };
