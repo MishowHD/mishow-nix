@@ -22,7 +22,15 @@
     interval = "weekly";
   };
 
-  services.smartd.enable = true;
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+  };
+
+  services.smartd = {
+    enable = true;
+    notifications.wall.enable = true;
+  };
 
   system.stateVersion = "26.05";
 }
