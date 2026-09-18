@@ -8,9 +8,14 @@
     ./disko.nix
   ];
 
-  # Standard UEFI bootloader for Proxmox / VM / Bare-metal
+  # Standard UEFI bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Filesystems configuration
+  boot.supportedFilesystems = [ "btrfs" "zfs" ];
+  boot.zfs.forceImportRoot = false;
+  networking.hostId = "8425e349";
 
   system.stateVersion = "26.05";
 }
