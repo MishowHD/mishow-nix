@@ -41,6 +41,7 @@
     vlc
     nextcloud-client
     heroic
+    ghidra
 
     #Development
     rustc
