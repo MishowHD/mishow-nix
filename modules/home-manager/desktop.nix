@@ -26,4 +26,14 @@
       DisableTelemetry = true;
     };
   };
+
+  xdg.desktopEntries = {
+    ghidra = {
+      name = "Ghidra";
+      # On Wayland non-reparenting/tiling compositors (like Niri), Java AWT/Swing GUI
+      # requires _JAVA_AWT_WM_NONREPARENTING=1 to prevent blank or unresponsive windows.
+      exec = "env _JAVA_AWT_WM_NONREPARENTING=1 ghidra";
+      icon = "ghidra";
+    };
+  };
 }
