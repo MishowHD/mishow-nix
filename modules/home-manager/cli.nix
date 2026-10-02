@@ -65,6 +65,9 @@
 
       k = "kubectl";
       kx = "kubectx";
+
+      z = "zeditor";
+      zed = "zeditor";
     };
 
     sessionVariables = {

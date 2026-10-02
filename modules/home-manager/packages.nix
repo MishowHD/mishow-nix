@@ -3,8 +3,6 @@
 {
   home.packages = with pkgs; [
     # CLI & System Utilities
-    neovim
-    vim
     htop
     btop
     curl
