@@ -33,6 +33,7 @@
       smartcase = true;
       splitright = true;
       splitbelow = true;
+      smoothscroll = true;
     };
 
     globals = {
