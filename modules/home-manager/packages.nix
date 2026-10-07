@@ -14,6 +14,8 @@
     nmap
     dnsutils
     ripgrep
+    file
+    gdb
 
     # Dev & Ops Tools
     clang-tools
