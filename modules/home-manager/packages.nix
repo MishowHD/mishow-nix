@@ -36,7 +36,6 @@
     seahorse
     xwayland-satellite
     papers
-    telegram-desktop
     prismlauncher
     vlc
     nextcloud-client
