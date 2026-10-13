@@ -41,6 +41,7 @@
     nextcloud-client
     heroic
     ghidra
+    telegram-desktop
 
     #Development
     rustc
@@ -51,7 +52,6 @@
     gcc
     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
       numpy
-      libdebug
     ]))
   ];
 }
