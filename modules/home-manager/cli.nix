@@ -68,6 +68,8 @@
 
       z = "zeditor";
       zed = "zeditor";
+      nd = "nix develop -c $SHELL";
+      ndu = "nix flake update && nix develop -c $SHELL";
     };
 
     sessionVariables = {
