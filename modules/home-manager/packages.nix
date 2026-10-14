@@ -42,6 +42,7 @@
     heroic
     ghidra
     telegram-desktop
+    libreoffice-qt
 
     #Development
     rustc
