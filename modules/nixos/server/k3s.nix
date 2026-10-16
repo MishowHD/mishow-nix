@@ -15,7 +15,6 @@
 
   services.k3s = {
     enable = true;
-    package = pkgs.k3s_1_36;
     role = "server";
     extraFlags = toString [
       "--tls-san=${config.networking.hostName}"
