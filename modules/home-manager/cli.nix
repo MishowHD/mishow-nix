@@ -67,9 +67,13 @@
       kx = "kubectx";
 
       z = "zeditor";
-      zed = "zeditor";
+      # Nix & NixOS
       nd = "nix develop -c $SHELL";
       ndu = "nix flake update && nix develop -c $SHELL";
+      nrs = "nixos-rebuild switch --flake /home/mishow/.config/nixos --sudo";
+      nru = "nix flake update --flake /home/mishow/.config/nixos && nixos-rebuild switch --flake /home/mishow/.config/nixos --sudo";
+      nrt = "nixos-rebuild test --flake /home/mishow/.config/nixos --sudo";
+      ngl = "nixos-rebuild list-generations";
     };
 
     sessionVariables = {
