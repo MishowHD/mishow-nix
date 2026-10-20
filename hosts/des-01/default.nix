@@ -17,7 +17,6 @@
       "quiet"
       "noapic"
       "intel_iommu=on"
-      "lockdown=integrity"
     ];
 
     kernelPackages = pkgs.linuxPackages_latest;
