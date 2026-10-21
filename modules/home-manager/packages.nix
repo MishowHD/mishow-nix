@@ -28,6 +28,7 @@
     sops
 
     # Desktop Applications & GUI
+    alacritty
     nautilus
     zed-editor
     spotify
