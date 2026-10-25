@@ -2,9 +2,9 @@
 
 {
   programs.niri.enable = true;
-  programs.dms-shell.enable = true;
+  programs.dux-shell.enable = true;
 
-  services.displayManager.dms-greeter = {
+  services.displayManager.dux-greeter = {
     enable = true;
     compositor.name = "niri";
     configHome = "/home/mishow";

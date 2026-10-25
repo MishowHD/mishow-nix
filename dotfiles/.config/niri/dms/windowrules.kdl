@@ -1,14 +1,37 @@
-// DMS Window Rules - Managed by DankMaterialShell
+// DMS Window Rules - Managed by Dux Shell
 // Do not edit manually - changes may be overwritten
 
-// @id=wr_1779787332563403649 @name=Global rounded corners
+// @id=dms-floating-windows @name=DMS Floating Windows
+window-rule {
+    match app-id="^(dev\\.duxlabs\\.shell|com\\.danklinux\\.dms)$"
+    open-floating true
+}
+
+// @id=dms_rule_2 @name=Gnome
+window-rule {
+    match app-id="^org\\.gnome\\."
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// @id=dms_rule_3 @name=Terminals
+window-rule {
+    match app-id="^org\\.wezfurlong\\.wezterm$"
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+
+// @id=dms_rule_4 @name=Rounding
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
-// @id=dms-floating-windows @name=DMS Floating Windows
+// @id=dms-window-opaque @name=DMS Window Opaque
 window-rule {
-    match app-id="^com.danklinux.dms$"
-    open-floating true
+    match app-id="^(dev\\.duxlabs\\.shell|com\\.danklinux\\.dms)$"
+    opacity 1.00
 }
