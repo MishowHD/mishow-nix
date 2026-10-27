@@ -9,6 +9,7 @@
     wl-clipboard
     fzf
     antigravity-cli
+    opencode
     nixd
     nil
     nmap
