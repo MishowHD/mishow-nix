@@ -202,6 +202,9 @@
       # Parsing
       treesitter.enable = true;
 
+      # Markdown rendering
+      render-markdown.enable = true;
+
       # Ricerca file e testo (stile moderno / LazyVim)
       telescope = {
         enable = true;
