@@ -158,6 +158,9 @@
     ];
 
     plugins = {
+      # Animazione del cursore (effetto "smear" quando ti muovi)
+      smear-cursor.enable = true;
+
       # UI LazyVim
       web-devicons.enable = true;
       which-key.enable = true;
