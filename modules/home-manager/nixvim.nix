@@ -40,6 +40,19 @@
       mapleader = " ";
     };
 
+    diagnostic.settings = {
+      virtual_lines = {
+        current_line = true;
+      };
+      signs = true;
+      underline = true;
+      severity_sort = true;
+      float = {
+        border = "rounded";
+        source = true;
+      };
+    };
+
     extraPackages = with pkgs; [
       fd
       ripgrep
@@ -110,6 +123,24 @@
         key = "<leader>xx";
         action = "<cmd>Trouble diagnostics toggle<CR>";
         options.desc = "Diagnostics (Trouble)";
+      }
+      {
+        mode = "n";
+        key = "gl";
+        action = "<cmd>lua vim.diagnostic.open_float({ border = 'rounded' })<CR>";
+        options.desc = "Show Line Diagnostics";
+      }
+      {
+        mode = "n";
+        key = "[d";
+        action = "<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>";
+        options.desc = "Previous Diagnostic";
+      }
+      {
+        mode = "n";
+        key = "]d";
+        action = "<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>";
+        options.desc = "Next Diagnostic";
       }
 
       # Git / LazyGit (stile LazyVim)
