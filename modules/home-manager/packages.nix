@@ -8,7 +8,6 @@
     curl
     wl-clipboard
     fzf
-    antigravity-cli
     opencode
     nixd
     nil
