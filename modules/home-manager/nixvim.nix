@@ -15,7 +15,12 @@
     globals.mapleader = " ";
 
     # Theme
-    colorschemes.monokai-pro.enable = true;
+    colorschemes.monokai-pro = {
+      enable = true;
+      settings = {
+        filter = "classic";
+      };
+    };
 
     # Editor options
     opts = {
