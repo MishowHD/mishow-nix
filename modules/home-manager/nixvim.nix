@@ -12,71 +12,128 @@
     viAlias = true;
     vimAlias = true;
 
-    colorschemes.catppuccin = {
-      enable = true;
-      settings.flavour = "mocha";
-    };
+    globals.mapleader = " ";
 
+    # Theme
+    colorschemes.monokai-pro.enable = true;
+
+    # Editor options
     opts = {
-      winbar = "%=%m %f";
       clipboard = "unnamedplus";
+
       number = true;
       relativenumber = true;
+      signcolumn = "yes";
+      cursorline = true;
+
+      expandtab = true;
       shiftwidth = 2;
       tabstop = 2;
-      expandtab = true;
-      signcolumn = "yes";
-      termguicolors = true;
-      cursorline = true;
+
       scrolloff = 8;
+      smoothscroll = true;
+
       ignorecase = true;
       smartcase = true;
+
       splitright = true;
       splitbelow = true;
-      smoothscroll = true;
+
+      undofile = true;
+      updatetime = 200;
+      timeoutlen = 300;
+
+      laststatus = 3;
+      conceallevel = 2;
+      termguicolors = true;
     };
 
-    globals = {
-      mapleader = " ";
-    };
-
+    # Diagnostics
     diagnostic.settings = {
-      virtual_lines = {
-        current_line = true;
-      };
-      signs = true;
-      underline = true;
+      virtual_lines.current_line = true;
       severity_sort = true;
+
       float = {
         border = "rounded";
         source = true;
       };
     };
 
+    # External dependencies
     extraPackages = with pkgs; [
       fd
       ripgrep
-      tree-sitter
-      glib
-      nixpkgs-fmt
-      lazygit
+      nixfmt
     ];
 
-    keymaps = [
-      # Neo-tree (File Explorer)
-      {
-        mode = "n";
-        key = "<leader>e";
-        action = "<cmd>Neotree toggle<CR>";
-        options.desc = "Toggle Explorer";
-      }
+    # LSP
+    plugins.lspconfig.enable = true;
 
-      # Buffer navigation (stile LazyVim)
+    lsp = {
+      inlayHints.enable = true;
+      keymaps = [
+        {
+          key = "gd";
+          mode = "n";
+          lspBufAction = "definition";
+          options.desc = "Goto Definition";
+        }
+        {
+          key = "gD";
+          mode = "n";
+          lspBufAction = "declaration";
+          options.desc = "Goto Declaration";
+        }
+        {
+          key = "gI";
+          mode = "n";
+          lspBufAction = "implementation";
+          options.desc = "Goto Implementation";
+        }
+        {
+          key = "gy";
+          mode = "n";
+          lspBufAction = "type_definition";
+          options.desc = "Goto Type Definition";
+        }
+        {
+          key = "<leader>ca";
+          mode = [
+            "n"
+            "x"
+          ];
+          lspBufAction = "code_action";
+          options.desc = "Code Action";
+        }
+        {
+          key = "<leader>cr";
+          mode = "n";
+          lspBufAction = "rename";
+          options.desc = "Rename";
+        }
+      ];
+
+      servers = {
+        clangd.enable = true;
+        gopls.enable = true;
+        jsonls.enable = true;
+        lua_ls.enable = true;
+        marksman.enable = true;
+        nixd.enable = true;
+        pyright.enable = true;
+        rust_analyzer.enable = true;
+        taplo.enable = true;
+      };
+    };
+
+    # Keymaps
+    keymaps = [
+      # Buffers
       {
         mode = "n";
         key = "<S-h>";
         action = "<cmd>bprevious<CR>";
-        options.desc = "Prev Buffer";
+        options.desc = "Previous Buffer";
       }
       {
         mode = "n";
@@ -86,64 +143,95 @@
       }
       {
         mode = "n";
+        key = "<leader>bb";
+        action = "<cmd>e #<CR>";
+        options.desc = "Switch to Other Buffer";
+      }
+      {
+        mode = "n";
         key = "<leader>bd";
         action = "<cmd>bdelete<CR>";
         options.desc = "Delete Buffer";
       }
+      {
+        mode = "n";
+        key = "<leader>bo";
+        action = "<cmd>BufferLineCloseOthers<CR>";
+        options.desc = "Close Other Buffers";
+      }
 
-      # Navigazione finestre/split
+      # Window navigation
       {
         mode = "n";
         key = "<C-h>";
         action = "<C-w>h";
-        options.desc = "Go to Left Window";
+        options.desc = "Left Window";
       }
       {
         mode = "n";
         key = "<C-j>";
         action = "<C-w>j";
-        options.desc = "Go to Lower Window";
+        options.desc = "Lower Window";
       }
       {
         mode = "n";
         key = "<C-k>";
         action = "<C-w>k";
-        options.desc = "Go to Upper Window";
+        options.desc = "Upper Window";
       }
       {
         mode = "n";
         key = "<C-l>";
         action = "<C-w>l";
-        options.desc = "Go to Right Window";
+        options.desc = "Right Window";
       }
 
-      # Diagnostica & Errori (Trouble)
+      # File explorer
       {
         mode = "n";
-        key = "<leader>xx";
-        action = "<cmd>Trouble diagnostics toggle<CR>";
-        options.desc = "Diagnostics (Trouble)";
+        key = "<leader>e";
+        action = "<cmd>Neotree toggle<CR>";
+        options.desc = "Toggle Explorer";
       }
+
+      # Flash
+      {
+        mode = [
+          "n"
+          "x"
+          "o"
+        ];
+        key = "s";
+        action = "<cmd>lua require('flash').jump()<CR>";
+        options.desc = "Flash";
+      }
+
+      # Search and replace
+      {
+        mode = [
+          "n"
+          "x"
+        ];
+        key = "<leader>sr";
+        action = "<cmd>lua require('grug-far').open({ transient = true })<CR>";
+        options.desc = "Search and Replace";
+      }
+
+      # Diagnostics
       {
         mode = "n";
         key = "gl";
         action = "<cmd>lua vim.diagnostic.open_float({ border = 'rounded' })<CR>";
-        options.desc = "Show Line Diagnostics";
+        options.desc = "Line Diagnostics";
       }
       {
         mode = "n";
-        key = "[d";
-        action = "<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>";
-        options.desc = "Previous Diagnostic";
-      }
-      {
-        mode = "n";
-        key = "]d";
-        action = "<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>";
-        options.desc = "Next Diagnostic";
+        key = "<leader>xx";
+        action = "<cmd>Trouble diagnostics toggle<CR>";
+        options.desc = "Diagnostics";
       }
 
-      # Git / LazyGit (stile LazyVim)
+      # Git
       {
         mode = "n";
         key = "<leader>gg";
@@ -151,31 +239,37 @@
         options.desc = "LazyGit";
       }
 
-      # Formattazione manuale
+      # Formatting
       {
         mode = "n";
         key = "<leader>cf";
-        action = "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<CR>";
-        options.desc = "Format Document";
+        action = "<cmd>lua require('conform').format({ async = true, lsp_format = 'fallback' })<CR>";
+        options.desc = "Format";
       }
 
-      # Pulisci highlight di ricerca con Esc
+      # Sessions
+      {
+        mode = "n";
+        key = "<leader>qs";
+        action = "<cmd>lua require('persistence').load()<CR>";
+        options.desc = "Restore Current Directory Session";
+      }
+      {
+        mode = "n";
+        key = "<leader>ql";
+        action = "<cmd>lua require('persistence').load({ last = true })<CR>";
+        options.desc = "Restore Last Session";
+      }
+
+      # Clear search highlights
       {
         mode = "n";
         key = "<Esc>";
         action = "<cmd>nohlsearch<CR>";
-        options.desc = "Clear Search Highlights";
+        options.desc = "Clear Search";
       }
 
-      # Ripristina ultima sessione
-      {
-        mode = "n";
-        key = "<leader>sl";
-        action = "<cmd>lua require('persistence').load()<CR>";
-        options.desc = "Restore Last Session";
-      }
-
-      # Indentazione comoda in visual mode
+      # Keep visual selection after indent
       {
         mode = "v";
         key = "<";
@@ -189,118 +283,106 @@
     ];
 
     plugins = {
-      # Animazione del cursore (effetto "smear" quando ti muovi)
-      smear-cursor.enable = true;
-
-      # UI LazyVim
-      web-devicons.enable = true;
-      which-key.enable = true;
-      bufferline.enable = true;
-      lualine.enable = true;
-      gitsigns.enable = true;
-      lazygit.enable = true;
-      nvim-autopairs.enable = true;
-
-      # Welcome Screen
+      # UI
       alpha = {
         enable = true;
         theme = "dashboard";
       };
 
-      # File Explorer
       neo-tree = {
         enable = true;
         settings.close_if_last_window = true;
       };
 
-      # Diagnostica
+      noice.enable = true;
+      bufferline.enable = true;
+      lualine.enable = true;
+
+      which-key = {
+        enable = true;
+        settings.preset = "helix";
+      };
+
+      # Mini.nvim: editing utilities
+      mini = {
+        enable = true;
+        mockDevIcons = true;
+
+        modules = {
+          ai = { };
+          icons = { };
+          pairs = { };
+          surround = { };
+        };
+      };
+
+      # Navigation and search
+      flash.enable = true;
+      grug-far.enable = true;
+
+      telescope = {
+        enable = true;
+
+        keymaps = {
+          "<leader><space>" = "find_files";
+          "<leader>ff" = "find_files";
+          "<leader>fg" = "live_grep";
+          "<leader>/" = "live_grep";
+          "<leader>fr" = "oldfiles";
+          "<leader>fb" = "buffers";
+          "<leader>fh" = "help_tags";
+          "<leader>fm" = "marks";
+        };
+      };
+
+      # Git and diagnostics
+      gitsigns.enable = true;
+      lazygit.enable = true;
+      todo-comments.enable = true;
       trouble.enable = true;
 
-      # Gestione sessioni
-      persistence.enable = true;
+      # Completion
+      friendly-snippets.enable = true;
 
-      # Formatting
-      conform-nvim = {
+      blink-cmp = {
         enable = true;
         settings = {
-          format_on_save = {
-            timeout_ms = 500;
-            lsp_format = "fallback";
-          };
-          formatters_by_ft = {
-            nix = [ "nixpkgs_fmt" ];
-          };
+          keymap.preset = "enter";
+          completion.documentation.auto_show = true;
         };
       };
 
       # Parsing
-      treesitter.enable = true;
+      treesitter = {
+        enable = true;
+        highlight.enable = true;
+        indent.enable = true;
+      };
 
-      # Markdown rendering
+      # Formatting
+      conform-nvim = {
+        enable = true;
+
+        settings = {
+          formatters_by_ft = {
+            nix = [ "nixfmt" ];
+          };
+
+          format_on_save = {
+            timeout_ms = 500;
+            lsp_format = "fallback";
+          };
+        };
+      };
+
+      # Markdown
       render-markdown.enable = true;
 
-      # Ricerca file e testo (stile moderno / LazyVim)
-      telescope = {
-        enable = true;
-        keymaps = {
-          "<leader>ff" = "find_files";
-          "<leader><space>" = "find_files";
-          "<leader>fg" = "live_grep";
-          "<leader>/" = "live_grep";
-          "<leader>fr" = "oldfiles";
-          "<leader>fh" = "oldfiles";
-          "<leader>fm" = "marks";
-          "<leader>fb" = "buffers";
-        };
-      };
+      # Sessions
+      persistence.enable = true;
 
-      # Evidenziazione e ricerca TODO, FIXME, NOTE nel codice
-      todo-comments.enable = true;
-
-      # Completion
-      cmp = {
-        enable = true;
-        autoEnableSources = true;
-        settings = {
-          sources = [
-            { name = "nvim_lsp"; }
-            { name = "path"; }
-            { name = "buffer"; }
-          ];
-          mapping = {
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<Tab>" = "cmp.mapping.select_next_item()";
-            "<S-Tab>" = "cmp.mapping.select_prev_item()";
-          };
-        };
-      };
-
-      # LSP (Language Server Protocol)
-      lsp = {
-        enable = true;
-        keymaps.lspBuf = {
-          "K" = "hover";
-          "gd" = "definition";
-          "<leader>ca" = "code_action";
-          "<leader>cr" = "rename";
-        };
-        servers = {
-          clangd.enable = true;
-          gopls.enable = true;
-          jsonls.enable = true;
-          marksman.enable = true;
-          nixd.enable = true;
-          pyright.enable = true;
-          rust_analyzer = {
-            enable = true;
-            installCargo = false;
-            installRustc = false;
-          };
-          taplo.enable = true;
-          lua_ls.enable = true;
-        };
-      };
+      # Cursor animation
+      smear-cursor.enable = true;
     };
   };
 }
