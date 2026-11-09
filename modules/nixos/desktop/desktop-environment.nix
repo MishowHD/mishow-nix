@@ -9,7 +9,7 @@
     compositor.name = "niri";
     configHome = "/home/mishow";
     configFiles = [
-      "/home/mishow/.config/DankMaterialShell/settings.json"
+      "/home/mishow/.config/dms/settings.json"
     ];
   };
 

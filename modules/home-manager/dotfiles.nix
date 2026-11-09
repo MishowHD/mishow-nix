@@ -8,7 +8,6 @@ in
     "fastfetch".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/fastfetch";
     "niri".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/niri";
     "alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/alacritty";
-    "DankMaterialShell".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/DankMaterialShell";
+    "dms".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/dms";
   };
 }
