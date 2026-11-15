@@ -42,6 +42,7 @@
     START_CHARGE_THRESH_BAT0 = 75;
     STOP_CHARGE_THRESH_BAT0 = 80;
   };
+  services.tlp.pd.enable = true;
   hardware.graphics.enable = true;
   hardware.alsa.enablePersistence = true;
 
