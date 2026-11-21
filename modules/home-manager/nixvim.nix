@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -49,8 +49,6 @@
       timeoutlen = 300;
 
       laststatus = 3;
-      conceallevel = 2;
-      termguicolors = true;
     };
 
     # Diagnostics
@@ -63,13 +61,6 @@
         source = true;
       };
     };
-
-    # External dependencies
-    extraPackages = with pkgs; [
-      fd
-      ripgrep
-      nixfmt
-    ];
 
     # LSP
     plugins.lspconfig.enable = true;
@@ -88,33 +79,6 @@
           mode = "n";
           lspBufAction = "declaration";
           options.desc = "Goto Declaration";
-        }
-        {
-          key = "gI";
-          mode = "n";
-          lspBufAction = "implementation";
-          options.desc = "Goto Implementation";
-        }
-        {
-          key = "gy";
-          mode = "n";
-          lspBufAction = "type_definition";
-          options.desc = "Goto Type Definition";
-        }
-        {
-          key = "<leader>ca";
-          mode = [
-            "n"
-            "x"
-          ];
-          lspBufAction = "code_action";
-          options.desc = "Code Action";
-        }
-        {
-          key = "<leader>cr";
-          mode = "n";
-          lspBufAction = "rename";
-          options.desc = "Rename";
         }
       ];
 
@@ -148,49 +112,10 @@
       }
       {
         mode = "n";
-        key = "<leader>bb";
-        action = "<cmd>e #<CR>";
-        options.desc = "Switch to Other Buffer";
-      }
-      {
-        mode = "n";
         key = "<leader>bd";
         action = "<cmd>bdelete<CR>";
         options.desc = "Delete Buffer";
       }
-      {
-        mode = "n";
-        key = "<leader>bo";
-        action = "<cmd>BufferLineCloseOthers<CR>";
-        options.desc = "Close Other Buffers";
-      }
-
-      # Window navigation
-      {
-        mode = "n";
-        key = "<C-h>";
-        action = "<C-w>h";
-        options.desc = "Left Window";
-      }
-      {
-        mode = "n";
-        key = "<C-j>";
-        action = "<C-w>j";
-        options.desc = "Lower Window";
-      }
-      {
-        mode = "n";
-        key = "<C-k>";
-        action = "<C-w>k";
-        options.desc = "Upper Window";
-      }
-      {
-        mode = "n";
-        key = "<C-l>";
-        action = "<C-w>l";
-        options.desc = "Right Window";
-      }
-
       # File explorer
       {
         mode = "n";
@@ -251,40 +176,6 @@
         action = "<cmd>lua require('conform').format({ async = true, lsp_format = 'fallback' })<CR>";
         options.desc = "Format";
       }
-
-      # Sessions
-      {
-        mode = "n";
-        key = "<leader>qs";
-        action = "<cmd>lua require('persistence').load()<CR>";
-        options.desc = "Restore Current Directory Session";
-      }
-      {
-        mode = "n";
-        key = "<leader>ql";
-        action = "<cmd>lua require('persistence').load({ last = true })<CR>";
-        options.desc = "Restore Last Session";
-      }
-
-      # Clear search highlights
-      {
-        mode = "n";
-        key = "<Esc>";
-        action = "<cmd>nohlsearch<CR>";
-        options.desc = "Clear Search";
-      }
-
-      # Keep visual selection after indent
-      {
-        mode = "v";
-        key = "<";
-        action = "<gv";
-      }
-      {
-        mode = "v";
-        key = ">";
-        action = ">gv";
-      }
     ];
 
     plugins = {
@@ -329,10 +220,8 @@
         enable = true;
 
         keymaps = {
-          "<leader><space>" = "find_files";
           "<leader>ff" = "find_files";
           "<leader>fg" = "live_grep";
-          "<leader>/" = "live_grep";
           "<leader>fr" = "oldfiles";
           "<leader>fb" = "buffers";
           "<leader>fh" = "help_tags";

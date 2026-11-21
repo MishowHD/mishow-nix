@@ -16,6 +16,7 @@
     ripgrep
     file
     gdb
+    nixfmt
 
     # Dev & Ops Tools
     clang-tools
@@ -51,8 +52,10 @@
     clippy
     rustfmt
     gcc
-    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-      numpy
-    ]))
+    (pkgs.python3.withPackages (
+      python-pkgs: with python-pkgs; [
+        numpy
+      ]
+    ))
   ];
 }
